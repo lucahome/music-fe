@@ -38,7 +38,7 @@ self.addEventListener('fetch', event => {
                         caches.open(CACHE_IMAGE).then(cache => {
                             cache.put(event.request, responseToCache)
                         });
-                    } else if (fetchRequest.url.startsWith(`${process.env.REACT_APP_URL_FRONTEND || 'http://localhost:3000'}`) && response.status === 200) {
+                    } else if (fetchRequest.url.startsWith(`${process.env.REACT_APP_URL_FRONTEND || 'https://music-fe-rho.vercel.app'}`) && response.status === 200) {
                         caches.open(CACHE_FE).then(cache => {
                             cache.put(event.request, responseToCache)
                         });
