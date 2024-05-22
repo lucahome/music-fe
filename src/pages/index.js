@@ -5,9 +5,9 @@ const Index = () => {
     const musicData = {
         id: 1,
         title: 'Lời yêu thương',
-        artist: '',
+        artist: 'Người gửi',
         thumbnail: require('../assets/images/img01.jpg'),
-        src: ''
+        src: null
     }
 
     return (

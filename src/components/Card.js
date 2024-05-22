@@ -9,7 +9,7 @@ const Card = ({ props: { musicData } }) => {
     const [play, setPlay] = useState(false)
     const [showVolume, setShowVolume] = useState(false)
     const [volume, setVolume] = useState(50)
-    const [repeat, setRepeat] = useState('repeat');
+    const [repeat, setRepeat] = useState('repeat_one');
 
     const audioRef = useRef();
     const canvasRef = useRef();
@@ -25,18 +25,19 @@ const Card = ({ props: { musicData } }) => {
         //         setDuration(audio.duration)
         //     }
         // }
-
         if (play) { audioRef.current.play() }
     }
 
     const handlePlayingAudio = () => {
-        visualizer(audioRef.current, canvasRef.current, play)
-        if (play) {
-            audioRef.current.pause();
-            setPlay(false)
-        } else {
-            audioRef.current.play();
-            setPlay(true)
+        if (musicData.src !== null) {
+            if (play) {
+                audioRef.current.pause();
+                setPlay(false)
+            } else {
+                audioRef.current.play();
+                setPlay(true)
+            }
+            visualizer(audioRef.current, canvasRef.current, play)
         }
     }
 
@@ -97,9 +98,13 @@ const Card = ({ props: { musicData } }) => {
         <div className='card'>
             <div className='nav'>
                 <i className="material-icons">expand_more</i>
-                <div className='marquee'>
-                    <span className='title'>{musicData.title} </span>
-                    <span className='duplicate-title'>{musicData.title} </span>
+                <div className='marquee-container'>
+                    <div className='marquee'>
+                        <div className='marquee-content'>
+                            <span className='title'>{musicData.title} </span>
+                        </div>
+                    </div>
+                    {/* <span className='duplicate-title'>{musicData.title} </span> */}
                 </div>
                 <i className="material-icons">queue_music</i>
             </div>
@@ -112,7 +117,7 @@ const Card = ({ props: { musicData } }) => {
             </div>
 
             <div className='details'>
-                <p className='title'>{musicData.title}</p>
+                {/* <p className='title'>{musicData.title}</p> */}
                 <p className='artist'>{musicData.artist}</p>
             </div>
 
